@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sweetheart ❣️</title>
+    <style>
+        /* Background Image */
+        body {
+            background: url('https://images.pexels.com/photos/1405525/pexels-photo-1405525.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Letter Box */
+        .letter-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            width: 70%;
+            border-radius: 15px;
+            font-size: 22px;
+            line-height: 1.5;
+        }
+
+        /* Buttons */
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: pink;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Celebration Animation */
+        #celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #celebration h1 {
+            font-size: 50px;
+            color: gold;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+
+    <script>
+        function propose() {
+            document.getElementById("celebration").style.display = "flex";
+            confettiEffect();
+        }
+
+        function changeNoToYes() {
+            let noButton = document.getElementById("noButton");
+            noButton.innerText = "Yes";
+            noButton.onclick = propose;
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = "❤️";
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+
+        setInterval(createHearts, 1000);
+
+        function confettiEffect() {
+            let duration = 5000;
+            let end = Date.now() + duration;
+            let colors = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffcc', '#0066ff', '#ff00ff'];
+
+            function frame() {
+                let timeLeft = end - Date.now();
+                if (timeLeft <= 0) return;
+
+                let particle = document.createElement("div");
+                particle.style.position = "fixed";
+                particle.style.left = Math.random() * 100 + "vw";
+                particle.style.top = Math.random() * 100 + "vh";
+                particle.style.width = "10px";
+                particle.style.height = "10px";
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = "50%";
+                particle.style.animation = "fall 3s linear";
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 3000);
+
+                requestAnimationFrame(frame);
+            }
+            frame();
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Letter Pop-up -->
+    <div class="letter-box">
+        <p>Heyy Sweetheart ❣️</p>
+        <p>I don't know if I'm good at this proposing stuff, but all I know is that I'm trying to be the **best version of myself** with you.</p>
+        <p>I want you to have the **best boyfriend (hubby)** in this world.</p>
+        <p>Thank youuu **a lotttt** for being this sweet and nice with me till now, and I look forward to **many more beautiful moments together**.</p>
+        <p>And I also have something to ask. Wanna know what it is? 😏</p>
+
+        <!-- Yes / No Buttons -->
+        <div class="buttons">
+            <button class="btn" onclick="propose()">Yes</button>
+            <button class="btn" id="noButton" onclick="changeNoToYes()">No</button>
+        </div>
+    </div>
+
+    <!-- Celebration Animation -->
+    <div id="celebration">
+        <h1>She Said YES! 🎉🎊💖</h1>
+    </div>
+
+    <!-- Romantic Background Music -->
+    <audio autoplay loop>
+        <source src="https://www.mboxdrive.com/10000hours.mp3" type="audio/mp3">
+    </audio>
+
+</body>
+</html>
